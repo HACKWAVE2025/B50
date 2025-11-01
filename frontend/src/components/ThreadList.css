@@ -1,0 +1,61 @@
+/* Thread List Styles */
+.thread-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Each thread item */
+.thread-card {
+  display: block;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.thread-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: #4f46e5;
+}
+
+.thread-card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+  color: #111827;
+  transition: color 0.3s;
+}
+
+.thread-card:hover h2 {
+  color: #4f46e5;
+}
+
+/* Thread preview content */
+.thread-preview {
+  margin: 0 0 1rem;
+  color: #6b7280;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Metadata (author + date) */
+.thread-meta {
+  color: #6b7280;
+  font-size: 0.875rem;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .thread-card {
+    padding: 1rem;
+  }
+
+  .thread-card h2 {
+    font-size: 1.25rem;
+  }
+}
