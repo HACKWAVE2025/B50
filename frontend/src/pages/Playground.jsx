@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export default function Playground() {
   const { groupId } = useParams();
   const navigate = useNavigate();
@@ -24,13 +26,13 @@ export default function Playground() {
       const token = localStorage.getItem("token");
       
       // Fetch group details
-      const groupResponse = await axios.get(`http://localhost:5000/api/groups/${groupId}`, {
+      const groupResponse = await axios.get(`${BASE_URL}/api/groups/${groupId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setGroup(groupResponse.data);
 
       // Fetch or create playground for this group
-      const playgroundResponse = await axios.get(`http://localhost:5000/api/playground/${groupId}`, {
+      const playgroundResponse = await axios.get(`${BASE_URL}/api/playground/${groupId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPlayground(playgroundResponse.data);
@@ -46,7 +48,7 @@ export default function Playground() {
   const leavePlayground = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.post(`http://localhost:5000/api/playground/${groupId}/leave`, {}, {
+      await axios.post(`${BASE_URL}/api/playground/${groupId}/leave`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
     } catch (err) {
@@ -158,22 +160,10 @@ export default function Playground() {
             className="sidebar-option-card"
             onClick={() => navigate(`/groups/${groupId}/members`)}
           >
-            <div className="option-icon">👥</div>
+            <div className="option-icon">🎨</div>
             <div className="option-content">
-              <h4>View Members</h4>
-              <p>See all group members</p>
-            </div>
-            <div className="option-arrow">→</div>
-          </button>
-
-          <button
-            className="sidebar-option-card"
-            onClick={() => navigate(`/groups/${groupId}/leaderboard`)}
-          >
-            <div className="option-icon">🏆</div>
-            <div className="option-content">
-              <h4>Leaderboard</h4>
-              <p>View rankings</p>
+              <h4>Users in Canvas</h4>
+              <p>See active collaborators</p>
             </div>
             <div className="option-arrow">→</div>
           </button>
